@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ajax signup</title>
+
+    <style>
+       .all{width:250px;
+            height:300px;
+            margin: auto;
+            margin-top: 130px;
+            border:1px black solid;
+       }
+       .account,.password{
+            margin-top:20px;
+            margin-left:10px;
+       }
+       .submit{
+           margin-top:20px;
+           margin-left:165px;
+       }
+       p{  margin-left:40px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="all">
+        <h2>註冊</h2>
+        帳號<input type="text" class="account" required>
+        <br>
+        密碼<input type="password" class="password" required>
+        <br>
+        <input type="submit" value="送出" class="submit">
+        <br>
+        <br>
+        <p>已有帳號？<a href="ajax signin page2.html">登入</a></p>
+    </div>
+
+    <script type="text/javascript">
+         var button=document.querySelector(".submit");
+         button.addEventListener("click",signup,false);
+
+         function signup(){
+
+             var data={};
+             var emailStr=document.querySelector(".account").value;
+             var passwordStr=document.querySelector(".password").value;
+             data.email=emailStr;
+             data.password=passwordStr;
+
+             var xhr=new XMLHttpRequest;
+             xhr.open("post","https://hexschool-tutorial.herokuapp.com/api/signup",true);
+             xhr.setRequestHeader("Content-type","application/json");
+             xhr.send(JSON.stringify(data));
+
+             xhr.onload=function(){
+                   console.log(xhr);
+                   if(xhr.status==200){
+                         var result=xhr.responseText;
+                         alert(result);
+                   }else{alert('錯誤');}
+
+             }
+
+         }
+
+    </script>
+  </body>
+</html>

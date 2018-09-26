@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>count practice</title>
+
+	<style>
+	    #container{
+		     width:100%;
+			 height:450px;
+		     background-image:url("http://www.classes.com.hk/items/news/3/banner_b310_%E4%BA%BA%E6%B0%A3%E8%9B%8B%E9%BB%83%E5%93%A5Gudetama%E5%B0%87%E6%9C%83CROSSOVER%E9%BA%A5%E7%95%B6%E5%8B%9E8.jpg");
+			 background-repeat:no-repeat;
+			 margin-left:250px;
+			 margin-top:120px;
+		}
+	
+	    #box{
+		     width:600px;
+			 height:400px;
+			 margin-left:100px;
+			 background-color:rgba(0,0,0,0.5);
+		}
+	
+	    h1{  text-align:center;
+		     color:white;
+			 font-family: arial,sans-serif;
+		}
+	    
+		table{
+		     margin-left:60px;
+		}
+		
+		tr,td{
+		     
+		     text-align:left;
+		     color:white;
+		     font-size:22px;
+			 font-family: arial,sans-serif;
+			 
+		}
+		
+		#total{
+		     font-weight:bold;
+			 font-size:30px;
+			 margin-left:400px;
+		}
+		
+		#hamInp{
+		     margin-left:50px;
+		}
+		
+		#friInp{
+		     margin-left:32px;
+		}
+		
+		#cokeInp{
+		     margin-left:110px;
+		}
+		
+		#sum{
+		     margin-left:350px;
+			 
+		}
+		
+		#button{
+		     margin-left:12px;
+			 border-radius:2px;
+		}
+	</style>
+</head>
+    
+<body>
+    
+	<div id="container">
+	    <div id="box">
+		   <h1>menu</h1>
+		   
+		       <table>
+			       
+				   <tr>
+				      <td>hamberger<span id="hamInp"><input type="text" id="hambergerNum" ></span></td>				      			   
+				   </tr>
+				   
+			       <tr>
+				      <td>fried chicken<span id="friInp"><input type="text" id="friedChickenNum"></span></td>				      			   
+				   </tr>
+                   
+				   <tr>				      
+				      <td>coke<span id="cokeInp"><input type="text" id="cokeNum"></span></td>				      			   
+				   </tr>
+				   
+				   <hr>
+					
+				   <tr>
+				      
+				      <td><span id="sum">total<input type="button" value="(count)" onclick="count()" id="button"><p id="total">=?</p></span></td>				      			   
+				   </tr>
+				   
+				   
+			   </table>
+		
+        </div>
+    </div>
+
+
+    <script>
+	    function count(){
+		   var hambergerPrice=50;
+		   var friedChickenPrice=40;
+		   var cokePrice=30;
+		   var hambergerSum=(document.getElementById("hambergerNum").value)*hambergerPrice;
+		   var friedChickenSum=(document.getElementById("friedChickenNum").value)*friedChickenPrice;
+		   var cokeSum=(document.getElementById("cokeNum").value)*cokePrice;
+		   
+		   document.getElementById("total").textContent=hambergerSum+friedChickenSum+cokeSum;
+		   		   
+		   		   
+		} 
+	
+	   
+	    /*			
+		function sayHello(name){
+		   console.log(name+'你好，歡迎光臨');		   
+		}
+	    				
+		以下實作結果:
+		
+		sayHello("yeah");         這裡記得要加" "
+		yeah你好，歡迎光臨
+	    */
+	   
+	   
+	   
+	    /*
+		function sayHello(name){
+		    for(var i=0;i<5;i++){
+			   console.log(name+i+'你好，歡迎光臨');			      
+			}		   		   
+		}
+	    
+		以下實作結果:
+		
+		sayHello("tiger");
+        tiger0你好，歡迎光臨
+        tiger1你好，歡迎光臨
+        tiger2你好，歡迎光臨
+        tiger3你好，歡迎光臨
+        tiger4你好，歡迎光臨
+		    
+		*/
+		
+		
+		
+		/*
+		var classmate={
+		    name:["Bob","John","Mary"],
+			score:[80,90,100]			    
+		}
+		
+		function greet(){
+		    for(var i=0;i<3;i++){
+			   console.log(classmate.name[0]+'your score is:'+classmate.score[0]);
+			}
+		}
+		*/
+	</script>
+
+</body>
+</html>

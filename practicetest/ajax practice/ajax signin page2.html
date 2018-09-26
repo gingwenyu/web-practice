@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ajax signin page2</title>
+
+    <style>
+       .all-signin{width:250px;
+            height:300px;
+            margin: auto;
+            margin-top: 130px;
+            border:1px black solid;
+       }
+       .account,.password{
+            margin-top:20px;
+            margin-left:10px;
+       }
+       .submit{
+           margin-top:20px;
+           margin-left:165px;
+       }
+       p{  margin-left:40px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="all-signin">
+        <h2>登入</h2>
+        帳號<input type="text" class="account" required>
+        <br>
+        密碼<input type="password" class="password" required>
+        <br>
+        <input type="submit" value="送出" class="submit">
+    </div>
+
+    <script type="text/javascript">
+
+        var submit=document.querySelector(".submit");
+        submit.addEventListener("click",signin,false);
+
+        function signin(){
+
+             var data={};
+             var emailStr=document.querySelector(".account");
+             var passwordStr=document.querySelector(".password");
+             data.email=emailStr;
+             data.password=passwordStr;
+
+             var xhr=new XMLHttpRequest;
+             xhr.open("post","https://hexschool-tutorial.herokuapp.com/api/signin",true);
+             xhr.setRequestHeader("Content-type","application/json");
+             xhr.send(JSON.stringify(data));
+
+             xhr.onload=function(){
+                    console.log(xhr);
+                    alert(xhr.responseText);
+
+             }
+        }
+
+
+    </script>
+  </body>
+</html>
