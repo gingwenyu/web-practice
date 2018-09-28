@@ -1,0 +1,559 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+     <meta charset="utf-8">
+     <title>BMI calculator</title>  
+	 	 
+	 <style>
+	/*全版面*/
+		 #all{
+		      width:1024px;
+			  height:1060px;		      
+		 }
+		 
+	/*區塊一，上*/
+	     #allone{
+		      width:1024px;
+			  height:300px;
+		      background-color:#424242;
+		 }
+		 
+	     /*logo*/
+		 #BMICLogo{
+		      width:117px;
+			  height:117px;
+			  margin:92px 734px 91px 173px;
+		 }
+		 
+		/*input周邊*/		 
+		 input{
+		      width:246px;
+			  height:34px;
+			  border:2px solid #FFD366;
+			  border-radius:10px;
+			  background-color:rgba(255,255,255,0.18);
+			  color:white;
+			  font-size:19px;
+		 }
+		 
+		 ::placeholder{
+		      font-size:19px;
+			  color:rgba(255,255,255,0.5);
+		 }
+		 
+		 #high{
+		      color:#FFD366;
+		      width:66px;
+			  height:18px;
+			  margin-bottom:7px;
+		 }
+		 
+		 #weight{
+		      color:#FFD366;
+		      width:66px;
+			  height:18px;
+			  margin-top:23px;
+			  margin-bottom:7px;
+		 }
+		 
+		 #highWeight{
+		      border:1px solid #424242;			  
+			  width:250px;
+			  margin:-226px 387px 73px 387px;		      
+		 }
+		 
+		 /*看結果*/
+		 #resultball{		      
+		      width:120px;
+			  height:120px;
+			  border-radius:60px;
+			  background-color:#FFD366;			  
+			  margin:-212px 214px 88px 690px;
+			  cursor:pointer;
+			  position:absolute;
+			  z-index:1;
+		 }
+		 
+		 #resultball:active{
+		      background-color:#DEA821;
+			  z-index:1;
+		 }
+		 
+		 #resultball p{   
+		      font-size:19px;
+		      text-align:center;
+		      margin-top:48px;
+			  margin-left:-2px;
+			  z-index:1;
+		 }
+		 
+		 /*圖例連結*/
+		 a{   color:rgba(255, 211, 102,0.7);
+		      margin:-90px 100px 700px 820px;
+			  position:absolute;
+		 }
+		 
+		 a:hover{
+		      color:rgb(255, 211, 102);
+		 }
+		 
+		 /*狀態球*/
+		 
+		 /*理想 與其他設定*/
+		 .ideal{
+		      display:none;
+			  z-index:2;
+		 }
+		 #ball{
+		      width:123px;
+			  height:123px;
+			  border-radius:60px;
+			  border:6px solid #86D73F;			  			  
+			  margin:-211px 213px 88px 688px;			  
+			  position:;
+			  color:#86D73F;			  
+			  text-align:center;
+			  font-size:26px;
+			  z-index:2;
+		 }
+		 #ball p{
+		      margin-top:40px;
+			  z-index:2;
+		 }
+         #BMInumber{
+		      
+		 }   		 
+		 #BMIword{
+		      color:#86D73F;
+			  text-align:center;
+			  font-size:1px;
+              margin-top:-60px;
+              z-index:2;			  
+		 }			 
+		 #word{
+		      color:#86D73F;
+			  font-size:26px;
+			  margin:-168px 131px 131px 838px;
+              z-index:2;			  
+		 }		 
+		 #loop{
+		      width:30px;
+			  height:30px;
+			  border-radius:15px;
+		      background-color:#86D73F;
+		      margin:-125px 131px 125px 790px;
+              z-index:2; 
+              curser:pointer;			  
+		 }
+         
+		 /*過輕*/
+		 .underweight{
+		      display:none;
+			  z-index:2;
+		 }
+		 .underweight #BMIword,.underweight #word,.underweight #BMInumber{
+		      color:#31BAF9;		      	
+		 }		 
+		 .underweight #ball{
+		      color:#31BAF9;
+		      border:6px solid #31BAF9;
+		 }		 
+		 .underweight #loop{
+		      background-color:#31BAF9;
+		 }
+         
+		 /*過重*/
+		 .overweight{
+		      display:none;
+			  z-index:2;
+		 }
+		 .overweight #BMIword,.overweight #word,.overweight #BMInumber{
+		      color:#FF982D;		      	
+		 }		 
+		 .overweight #ball{
+		      color:;
+		      border:6px solid #FF982D;
+		 }		 
+		 .overweight #loop{
+		      background-color:#FF982D;
+		 }
+		 
+		 /*輕度肥胖*/
+		 .obesity1{
+		      display:none;
+			  z-index:2;
+		 }
+		 .obesity1 #BMIword,.obesity1 #BMInumber{
+		      color:#FF6C03;		      	
+		 }
+         .obesity1 #word{
+		      color:#FF6C03;
+		      width:200px;
+		 }	 		 
+		 .obesity1 #ball{		      
+		      border:6px solid #FF6C03;
+		 }		 
+		 .obesity1 #loop{
+		      background-color:#FF6C03;
+		 }
+		 
+		 /*中度肥胖*/
+		 .obesity2{
+		      display:none;
+			  z-index:2;
+		 }
+		 .obesity2 #BMIword,.obesity2 #BMInumber{
+		      color:#FF6C03;		      	
+		 }
+         .obesity2 #word{
+		      color:#FF6C03;
+		      width:108px;
+		 }	 
+		 .obesity2 #ball{		      
+		      border:6px solid #FF6C03;
+		 }		 
+		 .obesity2 #loop{
+		      background-color:#FF6C03;
+		 }
+		 
+		 /*重度肥胖*/
+		 .obesity3{
+		      display:none;
+			  z-index:2;
+		 }
+		 .obesity3 #BMIword,.obesity3 #BMInumber{
+		      color:#FF1200;		      	
+		 }
+         .obesity3 #word{
+		      color:#FF1200;
+		      width:108px;
+		 }	 
+		 .obesity3 #ball{		      
+		      border:6px solid #FF1200;
+		 }		 
+		 .obesity3 #loop{
+		      background-color:#FF1200;
+		 }
+		 
+		 /*瘦弱*/
+		 .skinny{
+		      display:none;
+			  z-index:2;
+		 }
+		 .skinny #BMIword,.skinny #BMInumber{
+		      color:#a2ddf9;		      	
+		 }
+         .skinny #word{
+		      color:#a2ddf9;
+		      width:108px;
+		 }	 
+		 .skinny #ball{		      
+		      border:6px solid #a2ddf9;
+		 }		 
+		 .skinny #loop{
+		      background-color:#a2ddf9;
+		 }
+		 
+	/*區塊二，中*/
+	     #alltwo{
+		      width:1024px;
+			  height:668px;		      
+		 }
+		 
+		 /*BMI記錄*/
+		 h1{
+		      font-size:19px;
+			  margin:48px 464px 36px 464px;			  
+		 }
+		 
+		 .recordbar{
+		      width:624px;
+			  height:62px;
+		      background-color:#fffde5;
+			  margin-bottom:16px;
+			  margin-left:200px;
+			  margin-right:200px;
+		 }
+		 
+		 .recordcolor{
+		      width:7px;
+			  height:62px;			  
+		      background-color:black;              			  
+		 }
+		 
+		 .record{
+		      width:617px;
+			  height:62px; 		      
+		      margin-top:-62px;
+			  margin-left:7px;
+			  font-color:#4A4A4A;
+			  font-size:20px;
+			  padding-top:21px;
+			  padding-left:19px;
+		 }
+		 
+		 
+		 		 
+	/*區塊三，下*/
+		 #allthree{
+		      width:1024px;
+			  height:90px;
+		      background-color:#FFD366;
+		 }
+		 
+		 #BMICLogofooter{
+		      width:55px;
+			  height:55px;
+			  margin:18px 484px 17px 485px;
+			  background-color:black;			  
+		 }
+	 
+	 </style>
+
+</head>
+
+<body>
+     <!--全版面-->
+	 <div id="all">
+	     <!--區塊一，上-->
+         <div id="allone">
+		      <img src="image/BMICLogo.png" id="BMICLogo">
+			  
+			  	<div id="highWeight">	      
+			         <div id="high">身高cm</div><input type="text"  placeholder="請輸入身高" id="highNumber" required>
+				         <br>
+			         <div id="weight">體重kg</div><input type="text"  placeholder="請輸入體重" id="weightNumber" required>
+			    </div>
+				
+				<div id="resultball"><p>看結果</p></div>
+		        <a href="BMI calculator legend.html">圖例</a>
+				
+				
+				<!--狀態球-->
+		     <div class="colorball">
+				<div class="ideal">
+				     <div id="ball"><p id="BMInumber"></p><br><div id="BMIword">BMI</div></div>
+				     <p id="word"></p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+				
+				<div class="underweight">
+				     <div id="ball"><p id="BMInumber"></p><br><div id="BMIword">BMI</div></div>
+				     <p id="word"></p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+				
+				<div class="overweight">
+				     <div id="ball"><p id="BMInumber"></p><br><div id="BMIword">BMI</div></div>
+				     <p id="word"></p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+				
+				<div class="obesity1">
+				     <div id="ball"><p id="BMInumber"></p><br><div id="BMIword">BMI</div></div>
+				     <p id="word"></p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+				
+				<div class="obesity2">
+				     <div id="ball"><p id="BMInumber"></p><br><div id="BMIword">BMI</div></div>
+				     <p id="word"></p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+				
+				<div class="obesity3">
+				     <div id="ball"><p id="BMInumber"></p><br><div id="BMIword">BMI</div></div>
+				     <p id="word"></p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+				
+				<div class="skinny">
+				     <div id="ball"><p id="BMInumber"></p><br><div id="BMIword">BMI</div></div>
+				     <p id="word"></p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+			 </div>
+			 
+		 </div>
+         <!--區塊二，中-->
+		 <div id="alltwo">
+		        
+				<h1>BMI記錄</h1>
+				<div class="recordbar">
+				      <div class="recordcolor"></div>
+					  <ul class="record">
+					  					  
+					  </ul>
+				</div>		 		 
+		 </div>
+         <!--區塊三，下-->
+		 <div id="allthree">		 
+		      <img src="image/BMICLogo.png" id="BMICLogofooter">		 
+		 </div>
+
+     </div>
+
+	 
+	 <script>
+	 
+	     /*test
+	     var high=document.querySelector("#highNumber");         //ok
+	     var weight=document.querySelector("#weightNumber");     //ok
+		 var BMI=parseInt(weight)/Math.pow(parseInt(high)/100, 2);
+		 var BMInew=Math.round(BMI*1000)/1000;
+         
+		 var resultball=document.querySelector("#resultball");
+		 
+		 resultball.addEventListener("click",function(){
+		 
+		   }
+	     */
+		 
+		 
+ 	     //取值、計算BMI值
+	     document.querySelector("#resultball").addEventListener("click",function(){   
+		      
+		       //high.value;                                                //ok  
+			   //weight.value;                                              //ok
+			   			   
+		 	   var high=document.querySelector("#highNumber").value;        //ok
+               var weight=document.querySelector("#weightNumber").value;    //ok
+               
+			   var BMI=parseInt(weight)/Math.pow(parseInt(high)/100, 2);    //ok  parseInt("180")/100*("180")/100;
+			   
+			   var BMInew=Math.round(BMI*1000)/1000;                        //四捨五入console.log(BMI);  ok
+		       
+			   			   			   
+			   //條件判斷BMI值屬於哪個區間，想寫成function status(){}，之後組字串重用   ok
+			   
+		       var x=BMInew;
+		       var word="";
+		 
+		       if(x>18.5 && x<25){               			   
+			      word="理想";
+				  document.querySelector(".ideal #word").textContent=word;
+				  document.querySelector(".ideal #BMInumber").textContent=x;
+				  document.querySelector(".ideal").style.display ="block";
+				  document.querySelector("#resultball").style.display ="none";				  
+				  //document.querySelector(".recordcolor").style.backgroundcolor="#86D73F";
+			   }else if(x>16 && x<18.5){
+			      word="過輕";
+				  document.querySelector(".underweight #word").textContent=word;
+				  document.querySelector(".underweight #BMInumber").textContent=x;
+				  document.querySelector(".underweight").style.display ="block";
+				  document.querySelector("#resultball").style.display ="none";
+			   }else if(x>25 && x<30){
+			      word="過重";
+				  document.querySelector(".overweight #word").textContent=word;
+				  document.querySelector(".overweight #BMInumber").textContent=x;
+				  document.querySelector(".overweight").style.display ="block";
+				  document.querySelector("#resultball").style.display ="none";
+			   }else if(x>30 && x<35){
+			      word="輕度肥胖";
+				  document.querySelector(".obesity1 #word").textContent=word;
+				  document.querySelector(".obesity1 #BMInumber").textContent=x;
+				  document.querySelector(".obesity1").style.display ="block";
+				  document.querySelector("#resultball").style.display ="none";
+			   }else if(x>35 && x<40){
+			      word="中度肥胖";
+				  document.querySelector(".obesity2 #word").textContent=word;
+				  document.querySelector(".obesity2 #BMInumber").textContent=x;
+				  document.querySelector(".obesity2").style.display ="block";
+				  document.querySelector("#resultball").style.display ="none";
+			   }else if(x>=40){
+			      word="重度肥胖";
+				  document.querySelector(".obesity3 #word").textContent=word;
+				  document.querySelector(".obesity3 #BMInumber").textContent=x;
+				  document.querySelector(".obesity3").style.display ="block";
+				  document.querySelector("#resultball").style.display ="none";
+			   }else if(x<16){
+			      word="瘦弱";
+				  document.querySelector(".skinny #word").textContent=word;
+				  document.querySelector(".skinny #BMInumber").textContent=x;
+				  document.querySelector(".skinny").style.display ="block";
+				  document.querySelector("#resultball").style.display ="none";
+			   }else{
+			      word="";
+			   }	   		   				   		   				   		   		   		   
+		       			   			   
+			   //列出 test    ok
+               var d=new Date();			   
+			   var str=word+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>BMI</font>"+"&nbsp"+BMInew+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>weight</font>"+"&nbsp"+weight+"kg"+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>height</font>"+"&nbsp"+high+"cm"+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='3'>"+d.toDateString()+"</font>";	 
+	           document.querySelector(".record").innerHTML=str;
+			   
+			   
+			   
+			   
+			   //localStorage  testing
+			   /*
+			   var data=JSON.parse(localStorage.getItem("listData"))||[];
+			   var todo={
+					    content:str
+					    };
+                    data.push(todo);
+					
+                  //updataList(data);
+				    strNEW="";
+					var len=items.length;
+					for(var i=0;i<len;i++){
+					    strNEW+="<p>"+items[i].content+"</p>";
+					}
+			        record.innerHTML=strNEW;
+				  
+			        localStorage.setItem("listData",JSON.stringify(str));
+			   */
+			   
+			   
+		 },false)
+
+		 
+		 //loop function，按loop圖形，input清除前一次資料，右邊回到看結果，testing
+		 //目前只選取到第一筆資料class="ideal"，在 理想 測試完成，(未完成)再接續第一段addEventListener的取值運算
+		 var loopRestart=document.querySelector("#loop");
+		 
+		 loopRestart.addEventListener("click",function(){
+		       document.querySelector("#highNumber").value="";        
+               document.querySelector("#weightNumber").value="";
+			   document.querySelector(".colorball").style.display ="none";
+               document.querySelector("#resultball").style.display ="block";
+		 
+		 },false)
+		 
+		 
+		       /*
+	           //參考教學
+		      
+			   //指定DOM
+		       var record=document.querySelector(".record");  
+		       var sendData=document.querySelector("#resultball");
+			   var data=JSON.parse(localStorage.getItem("listData"))||[];
+			   
+			   //監聽與更新
+			   sendData.addEventListener("click",addData,false);
+			   updataList(data);
+	 
+	 	       //
+			   function addData(e){
+			        var txt=str;
+					var todo={
+					    content:txt
+					};
+                    data.push(todo);
+                    updataList(data);
+                    localStorage.setItem("listData",JSON.stringify(data));					
+			   }
+	           //
+			   function updataList(items){
+			        strNEW="";
+					var len=items.length;
+					for(var i=0;i<len;i++){
+					    strNEW+="<p>"+items[i].content+"</p>";
+					}
+			        record.innerHTML=strNEW;
+			   }
+			   
+			   */
+	 			   
+	 </script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+     <meta charset="utf-8">
+     <title>BMI calculator legend</title>
+     
+	 <style>
+	     .ideal,.underweight,.overweight,.obesity1,.obesity2,.obesity3{
+		      width:1024px;
+			  height:300px;
+		      background-color:#424242;
+		      margin-bottom:32px;
+		 }
+ 
+	     #BMICLogo{
+		      width:117px;
+			  height:117px;
+			  margin:92px 734px 91px 173px;
+		 }		 
+				 
+		 input{
+		      width:246px;
+			  height:34px;
+			  border:2px solid #FFD366;
+			  border-radius:10px;
+			  background-color:rgba(255,255,255,0.18);
+			  color:white;
+			  font-size:19px;
+			  	  
+		 }
+		 
+		 ::placeholder{
+		      font-size:19px;
+			  color:rgba(255,255,255,0.5);
+		 }
+		 
+		 #high{
+		      color:#FFD366;
+		      width:66px;
+			  height:18px;
+			  margin-bottom:7px;
+		 }
+		 
+		 #weight{
+		      color:#FFD366;
+		      width:66px;
+			  height:18px;
+			  margin-top:23px;
+			  margin-bottom:7px;
+		 }
+		 
+		 #highWeight{
+		      border:1px solid #424242;			  
+			  width:250px;
+			  margin:-226px 387px 73px 387px;
+		      
+		 }
+		 
+		 #resultball{
+		      width:123px;
+			  height:123px;
+			  border-radius:60px;
+			  border:6px solid #86D73F;			  			  
+			  margin:-211px 213px 88px 688px;			  
+			  position:;
+			  color:#86D73F;
+			  text-align:center;
+			  font-size:26px;
+		 }
+
+		 #resultball p{
+		      margin-top:40px;
+		 }
+		 
+		 #BMIword{
+		      color:#86D73F;
+			  text-align:center;
+			  font-size:1px;
+              margin-top:-60px;			  
+		 }	
+		 
+		 #word{
+		      color:#86D73F;
+			  font-size:26px;
+			  margin:-168px 131px 131px 838px;	
+		 }
+		 
+		 #loop{
+		      width:30px;
+			  height:30px;
+			  border-radius:15px;
+		      background-color:#86D73F;
+		      margin:-125px 131px 125px 790px;	
+		 }
+	     
+		 
+	 
+	 
+	     .underweight #BMIword,.underweight #word{
+		      color:#31BAF9;		      	
+		 }		 
+		 .underweight #resultball{
+		      color:#31BAF9;
+		      border:6px solid #31BAF9;
+		 }		 
+		 .underweight #loop{
+		      background-color:#31BAF9;
+		 }
+		 
+		 
+		 
+		 .overweight #BMIword,.overweight #word{
+		      color:#FF982D;		      	
+		 }		 
+		 .overweight #resultball{
+		      color:#FF982D;
+		      border:6px solid #FF982D;
+		 }		 
+		 .overweight #loop{
+		      background-color:#FF982D;
+		 }
+		 
+		 
+		 
+		 .obesity1 #BMIword{
+		      color:#FF6C03;		      	
+		 }
+         .obesity1 #word{
+		      color:#FF6C03;
+              width:108px;              			  
+		 }		 
+		 .obesity1 #resultball{
+		      color:#FF6C03;
+		      border:6px solid #FF6C03;
+		 }		 
+		 .obesity1 #loop{
+		      background-color:#FF6C03;
+		 }
+		 
+	
+
+	     .obesity2 #BMIword{
+		      color:#FF6C03;		      	
+		 }
+         .obesity2 #word{
+		      color:#FF6C03;
+              width:108px;              			  
+		 }		 
+		 .obesity2 #resultball{
+		      color:#FF6C03;
+		      border:6px solid #FF6C03;
+		 }		 
+		 .obesity2 #loop{
+		      background-color:#FF6C03;
+		 }
+		 
+		 
+		 
+		 .obesity3 #BMIword{
+		      color:#FF1200;		      	
+		 }
+         .obesity3 #word{
+		      color:#FF1200;
+              width:108px;              			  
+		 }		 
+		 .obesity3 #resultball{
+		      color:#FF1200;
+		      border:6px solid #FF1200;
+		 }		 
+		 .obesity3 #loop{
+		      background-color:#FF1200;
+		 }
+		 
+		 		 
+		 a{
+		      color:rgba(255,255,255,0.7);
+		      margin:-60px 0px 0px 945px;
+			  position:absolute;		 
+		 }
+		 a:hover{
+		      color:rgb(255,255,255);
+		 }
+
+		 
+	 </style>
+</head>
+
+<body>
+    
+     <div class="ideal">
+		      <img src="image/BMICLogo.png" id="BMICLogo">
+			  
+			  	<div id="highWeight">	      
+			         <div id="high">身高cm</div><input type="text"  placeholder="180">
+				     <br>
+			         <div id="weight">體重kg</div><input type="text"  placeholder="70">
+			    </div>
+				
+				<div >
+				     <div id="resultball"><p>20.90</p><br><div id="BMIword">BMI</div></div>
+				     <p id="word">理想</p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+	 
+	 </div>
+
+
+     <div class="underweight">
+	 	        <img src="image/BMICLogo.png" id="BMICLogo">
+			  
+			  	<div id="highWeight">	      
+			         <div id="high">身高cm</div><input type="text"  placeholder="180">
+				     <br>
+			         <div id="weight">體重kg</div><input type="text"  placeholder="40">
+			    </div>
+				
+				<div >
+				     <div id="resultball"><p>11.94</p><br><div id="BMIword">BMI</div></div>
+				     <p id="word">過輕</p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+              
+	 </div>
+	 
+	 	 
+     <div class="overweight">
+	 	        <img src="image/BMICLogo.png" id="BMICLogo">
+			  
+			  	<div id="highWeight">	      
+			         <div id="high">身高cm</div><input type="text"  placeholder="180">
+				     <br>
+			         <div id="weight">體重kg</div><input type="text"  placeholder="90">
+			    </div>
+				
+				<div >
+				     <div id="resultball"><p>26.87</p><br><div id="BMIword">BMI</div></div>
+				     <p id="word">過重</p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+		 
+	 </div>
+
+	 	 
+     <div class="obesity1">
+	 	        <img src="image/BMICLogo.png" id="BMICLogo">
+			  
+			  	<div id="highWeight">	      
+			         <div id="high">身高cm</div><input type="text"  placeholder="180">
+				     <br>
+			         <div id="weight">體重kg</div><input type="text"  placeholder="100">
+			    </div>
+				
+				<div >
+				     <div id="resultball"><p>29.86</p><br><div id="BMIword">BMI</div></div>
+				     <p id="word">輕度肥胖</p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+		 
+	 </div>
+	 
+	 	 
+	 <div class="obesity2">
+	            <img src="image/BMICLogo.png" id="BMICLogo">
+			  
+			  	<div id="highWeight">	      
+			         <div id="high">身高cm</div><input type="text"  placeholder="180">
+				     <br>
+			         <div id="weight">體重kg</div><input type="text"  placeholder="110">
+			    </div>
+				
+				<div >
+				     <div id="resultball"><p>32.85</p><br><div id="BMIword">BMI</div></div>
+				     <p id="word">中度肥胖</p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+	 	 	 	 
+	 </div>
+	 
+	 
+	 <div class="obesity3">
+	 	        <img src="image/BMICLogo.png" id="BMICLogo">
+			  
+			  	<div id="highWeight">	      
+			         <div id="high">身高cm</div><input type="text"  placeholder="180">
+				     <br>
+			         <div id="weight">體重kg</div><input type="text"  placeholder="130">
+			    </div>
+				
+				<div >
+				     <div id="resultball"><p>38.82</p><br><div id="BMIword">BMI</div></div>
+				     <p id="word">重度肥胖</p>
+					 <img src="image/icons_loop.png" id="loop">
+				</div>
+	 </div>
+
+     <a href="BMI calculator.html">回上頁</a>
+
+</body>
+</html>
