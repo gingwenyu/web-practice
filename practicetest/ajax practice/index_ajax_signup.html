@@ -34,7 +34,7 @@
         <input type="submit" value="送出" class="submit">
         <br>
         <br>
-        <p>已有帳號？<a href="ajax signin page2.html">登入</a></p>
+        <p>已有帳號？<a href="ajax_signin.html">登入</a></p>
     </div>
 
     <script type="text/javascript">
@@ -57,7 +57,7 @@
              xhr.onload=function(){
                    console.log(xhr);
                    if(xhr.status==200){
-                         var result=xhr.responseText;
+                         var result=(JSON.parse(xhr.responseText)).message;
                          alert(result);
                    }else{alert('錯誤');}
 

@@ -42,10 +42,12 @@
         function signin(){
 
              var data={};
-             var emailStr=document.querySelector(".account");
-             var passwordStr=document.querySelector(".password");
+             var emailStr=document.querySelector(".account").value;
+             var passwordStr=document.querySelector(".password").value;
              data.email=emailStr;
              data.password=passwordStr;
+
+             //console.log(data);
 
              var xhr=new XMLHttpRequest;
              xhr.open("post","https://hexschool-tutorial.herokuapp.com/api/signin",true);
@@ -54,7 +56,10 @@
 
              xhr.onload=function(){
                     console.log(xhr);
-                    alert(xhr.responseText);
+                    if(xhr.status==200){
+                          var print=(JSON.parse(xhr.responseText)).message;
+                          alert(print);
+                    }else{alert('錯誤');}
 
              }
         }
