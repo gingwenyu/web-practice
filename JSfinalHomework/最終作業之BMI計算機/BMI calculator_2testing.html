@@ -186,7 +186,7 @@
 		 .obesity1 #BMIword,.obesity1 #BMInumber{
 		      color:#FF6C03;
 		 }
-         .obesity1 #word{
+     .obesity1 #word{
 		      color:#FF6C03;
 		      width:200px;
 		 }
@@ -205,7 +205,7 @@
 		 .obesity2 #BMIword,.obesity2 #BMInumber{
 		      color:#FF6C03;
 		 }
-         .obesity2 #word{
+     .obesity2 #word{
 		      color:#FF6C03;
 		      width:108px;
 		 }
@@ -224,7 +224,7 @@
 		 .obesity3 #BMIword,.obesity3 #BMInumber{
 		      color:#FF1200;
 		 }
-         .obesity3 #word{
+     .obesity3 #word{
 		      color:#FF1200;
 		      width:108px;
 		 }
@@ -243,7 +243,7 @@
 		 .skinny #BMIword,.skinny #BMInumber{
 		      color:#a2ddf9;
 		 }
-         .skinny #word{
+     .skinny #word{
 		      color:#a2ddf9;
 		      width:108px;
 		 }
@@ -258,7 +258,7 @@
 	     #alltwo{
 		      width:1024px;
 			    height:668px;
-		 }
+		    }
 
 		 /*BMI記錄*/
 		 h1{
@@ -294,7 +294,15 @@
 			    padding-left:19px;
 		 }
 
+     .del{
+          color:black;
+          margin-left:15px;
+          margin-top:0px;
+     }
 
+     p{   margin-top:-2px;
+
+     }
 
 	/*區塊三，下*/
 		 #allthree{
@@ -318,7 +326,7 @@
      <!--全版面-->
 	 <div id="all">
 	     <!--區塊一，上-->
-         <div id="allone">
+       <div id="allone">
 		      <img src="image/BMICLogo.png" id="BMICLogo">
 
 			  	<div id="highWeight">
@@ -332,7 +340,7 @@
 
 
 				<!--狀態球-->
-		     <div class="colorball">
+		 <div class="colorball">
 				<div class="ideal">
 				     <div id="ball"><p id="BMInumber"></p><br><div id="BMIword">BMI</div></div>
 				     <p id="word"></p>
@@ -374,7 +382,8 @@
 				     <p id="word"></p>
 					 <img src="image/icons_loop.png" id="loop">
 				</div>
-			 </div>
+
+		 </div>
 
 		 </div>
          <!--區塊二，中-->
@@ -392,50 +401,43 @@
 		 <div id="allthree">
 		      <img src="image/BMICLogo.png" id="BMICLogofooter">
 		 </div>
-
-     </div>
-
-
+        <!--
+          var high=document.querySelector("#highNumber").value;
+        -->
 	 <script>
-
-
-
-
-	     var high=document.querySelector("#highNumber");         //ok
-	     var weight=document.querySelector("#weightNumber");     //ok
-
-		   var BMI=parseInt(weight)/Math.pow(parseInt(high)/100, 2);  //ok  parseInt("180")/100*("180")/100;
-		   var BMInew=Math.round(BMI*1000)/1000;                      //四捨五入console.log(BMI);  ok
-
+	     var hVal=document.querySelector("#highNumber");
+	     var wVal=document.querySelector("#weightNumber");
+       var high;
+       var weight;
+		   var BMI;
+		   var BMInew;
 
 		   var resultball=document.querySelector("#resultball");
 	     resultball.addEventListener("click",count,false);
-
-       //test
        resultball.addEventListener("click",add,false);
 
-       var record=document.querySelector(".record");
-       record.addEventListener("click",del,false);
+       var recordbar=document.querySelector(".recordbar");
+       recordbar.addEventListener("click",del,false);
 
        var data=JSON.parse(localStorage.getItem("listdata")) || [ ];
        updatelist(data);
-       //
 
+
+       //計算BMI
        function count(){
-           high.value;                                 //ok
-           weight.value;                               //ok
-           BMI;                                        //ok
-           BMInew;                                     //ok
-           status();
-          // updatalist(data);
+           hVal.value;
+           wVal.value;
+           high=parseInt(hVal.value);
+           weight=parseInt(wVal.value);
+           BMI=weight/Math.pow(high/100, 2);     //ok  parseInt("180")/100*("180")/100;
+           BMInew=Math.round(BMI*1000)/1000;     //ok  四捨五入
+
+           return BMInew;
        }
 
-
 			 //條件判斷BMI值屬於哪個區間 ok
-
-//test word
        function status(){
-             var x=BMInew;
+             var x=count();
              var word="";
 
 		      if(x>18.5 && x<25){
@@ -445,6 +447,7 @@
 				  document.querySelector(".ideal").style.display ="block";
 				  document.querySelector("#resultball").style.display ="none";
 				//document.querySelector(".recordcolor").style.backgroundColor="#86D73F";
+          return word;
 
 			   }else if(x>16 && x<18.5){
 			      word="過輕";
@@ -452,56 +455,53 @@
 				  document.querySelector(".underweight #BMInumber").textContent=x;
 				  document.querySelector(".underweight").style.display ="block";
 				  document.querySelector("#resultball").style.display ="none";
+          return word;
+
 			   }else if(x>25 && x<30){
 			      word="過重";
 				  document.querySelector(".overweight #word").textContent=word;
 				  document.querySelector(".overweight #BMInumber").textContent=x;
 				  document.querySelector(".overweight").style.display ="block";
 				  document.querySelector("#resultball").style.display ="none";
+          return word;
+
 			   }else if(x>30 && x<35){
 			      word="輕度肥胖";
 				  document.querySelector(".obesity1 #word").textContent=word;
 				  document.querySelector(".obesity1 #BMInumber").textContent=x;
 				  document.querySelector(".obesity1").style.display ="block";
 				  document.querySelector("#resultball").style.display ="none";
+          return word;
+
 			   }else if(x>35 && x<40){
 			      word="中度肥胖";
 				  document.querySelector(".obesity2 #word").textContent=word;
 				  document.querySelector(".obesity2 #BMInumber").textContent=x;
 				  document.querySelector(".obesity2").style.display ="block";
 				  document.querySelector("#resultball").style.display ="none";
+          return word;
+
 			   }else if(x>=40){
 			      word="重度肥胖";
 				  document.querySelector(".obesity3 #word").textContent=word;
 				  document.querySelector(".obesity3 #BMInumber").textContent=x;
 				  document.querySelector(".obesity3").style.display ="block";
 				  document.querySelector("#resultball").style.display ="none";
+          return word;
+
 			   }else if(x<16){
 			      word="瘦弱";
 				  document.querySelector(".skinny #word").textContent=word;
 				  document.querySelector(".skinny #BMInumber").textContent=x;
 				  document.querySelector(".skinny").style.display ="block";
 				  document.querySelector("#resultball").style.display ="none";
+          return word;
+
 			   }else{
 			      word="";
 			   }
-  
-       }
-
-
-			   //列出 test    ok
-
-      /*var d=new Date();
-       function print(){
-
-			   var str="<p>"+word+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>BMI</font>"+"&nbsp"+
-                 BMInew+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>weight</font>"+"&nbsp"+
-                 weight+"kg"+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>height</font>"+"&nbsp"+
-                 high+"cm"+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='3'>"+d.toDateString()+"</font>"+"</p>";
-	           document.querySelector(".record").innerHTML=str;
 
        }
-       */
 
      /*
      //未完成，測試中測試中測試中測試中測試中測試中測試中測試中測試中測試中測試中測試中
@@ -520,36 +520,35 @@
       }
       */
 
-      //test
        function add(){
-//test    count();
-          BMI;
-          BMInew;
-          let d=new Date();
 
-          let txt=word+BMInew+weight.value+high.value+d.toDateString();  //重新確認字串的組成?????
-          let todo={
+          var d=new Date();
+          var txt=status()+count()+hVal.value+wVal.value+d.toDateString();
+          var todo={
                content:txt
           };
           data.push(todo);
           updatelist(data);
           localStorage.setItem("listdata",JSON.stringify(data));
 
-          console.log(txt);
+          //先用var測試完成，再改成let
        }
 
        function updatelist(item){
           let newstr="";
           let d=new Date();
           for(let i=0;i<item.length;i++){
-              newstr+="<p>"+word+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>BMI</font>"+"&nbsp"+
-                      BMInew+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>weight</font>"+"&nbsp"+
-                      weight+"kg"+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>height</font>"+"&nbsp"+
-                      high+"cm"+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='3'>"+d.toDateString()+"</font>"+
-                      "<a data-index="+i+">刪除</a></p>";
-                      //重新確認字串的組成?????
+              newstr+="<div class='recordcolor'></div><div class='record'><p>"+status()+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>BMI</font>"+"&nbsp"+
+                      count()+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>weight</font>"+"&nbsp"+
+                      wVal.value+"kg"+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='1'>height</font>"+"&nbsp"+
+                      hVal.value+"cm"+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='3'>"+d.toDateString()+"</font>"+"&nbsp"+
+                      "<a class='del' data-index="+i+">delete</a></p></div>";
+
+
+              //再新增 把整個recordbar寫進來
           }
-              record.innerHTML=newstr;
+//暫時關掉 之後打開
+                      recordbar.innerHTML=newstr;
               localStorage.setItem("listdata",JSON.stringify(data));
        }
 
@@ -557,13 +556,10 @@
            let select=e.target.nodeName;
            let index=e.target.dataset.index;
            if(select!=="A"){return};
-               splice(index,1)
-           updatalist(data);
-           localStorage.setItem("listdata",JSON.stringify(data));
+              data.splice(index,1)
+              updatalist(data);
+              localStorage.setItem("listdata",JSON.stringify(data));
        }
-
-
-      //
 
 	 </script>
 </body>
