@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-      <meta charset="utf-8">
+    <meta charset="utf-8">
 	  <title>Kaohsiung travel information</title>
 
 	  <style>
@@ -14,7 +14,8 @@
 				    border:1px white solid;
 		   }
 	     #picture{
-            width:1028px;
+          /*  width:1028px;  */
+            width:100%;
             height:384px;
             z-index:1;
 
@@ -49,6 +50,19 @@
             line-height: 21px;
             z-index:3;
 		   }
+       #mapbtn{
+            width:100px;
+            height:60px;
+            border-radius:30px;
+            margin-left:800px;
+            margin-top: -100px;
+            font-size: 18px;
+            background-color: #555555;
+            color: white;
+            position:relative;
+			    	z-index:5;
+
+       }
 		   .hotarea{
             width:800px;
             height:111px;
@@ -83,8 +97,9 @@
 
 		   #alltwo{
 		        width:1024px;
-				    height:1600px;
+      height:1600px;
 				    border:;
+            padding:1px white solid;
 		   }
 		   #alltwo hr{
 		        width:900px;
@@ -125,8 +140,8 @@
 		   }
 		   .items .inbox2{
 		        width:442px;
-            height:115px;
-			    	margin-top:-140px;
+         height:125px;
+			    	margin-top:-145px;
 				    font-size:17px;
 				    padding-left:22px;
 			    	background-color:rgba(255,255,255,0.62);
@@ -145,7 +160,8 @@
 
 		   }
 		   #allthree{
-		        width:1024px;
+		     /*   width:1024px;  */
+            width:100%;
             height:66px;
             background-color:#559AC8;
             margin-top:380px;
@@ -202,16 +218,17 @@
 						<option value="左營區">--左營區--</option>
 						<option value="前鎮區">--前鎮區--</option>
             <option value="鹽埕區">--鹽埕區--</option>
-
 				    </select>
 				</div>
+
+        <a href='map.html'><input type='button' value='地圖瀏覽' id='mapbtn'></a>
 
 				<div class="hotarea">
 		      <p>熱門行政區</p>
           <input type="button" value="苓雅區" style='background-color:#8A82CC;margin-left:51px;'>
           <input type="button" value="三民區" style='background-color:#FFA782;'>
           <input type="button" value="新興區" style='background-color:#F5D105;'>
-          <input type="button" value="鹽埕區" style='background-color:#559AC8;'>
+          <input type="button" value="美濃區" style='background-color:#559AC8;'>
 		    </div>
 		  </div>
 
@@ -256,13 +273,25 @@
                      '<img src="image/icons_pin.png">'+address+'<br>'+
 										 '<img src="image/icons_phone.png">'+tel+'&emsp;'+'&emsp;'+'&emsp;' +'&emsp;'+'&emsp;'+'&emsp;'+'&emsp;'+'&emsp;'+'&emsp;'+'&emsp;'+'&emsp;'+
 										 '<img src="image/icons_tag.png">'+ticket+'</div>'+'</div>';
+
+
+
+
 					    }
 
 				    }
 					document.querySelector("#alltwo h2").textContent=choose;
 					document.querySelector(".items").innerHTML=str;
 
+          //test test test
+          document.querySelector('.items').style.height=window.innerHeight+'px';
+
+           window.onresize=function(){
+             document.querySelector("#alltwo").style.height=window.innerHeight+'px';
+           }
+
 				}
+
 
 
 
