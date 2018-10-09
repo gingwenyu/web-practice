@@ -269,7 +269,6 @@
 		 .recordbar{
 		      width:624px;
 			    height:62px;
-		      background-color:#fffde5;
 			    margin-bottom:16px;
 			    margin-left:200px;
 			    margin-right:200px;
@@ -279,7 +278,6 @@
 		 .recordcolor{
 		      width:7px;
 			    height:62px;
-		      background-color:black;
           z-index:3;
 		 }
 
@@ -422,6 +420,8 @@
        var data=JSON.parse(localStorage.getItem("listdata")) || [ ];
        updatelist(data);
 
+       //test
+       //document.querySelector(".recordcolor").style.backgroundColor="#86D73F";
 
        //計算BMI
        function count(){
@@ -437,16 +437,14 @@
 
 			 //條件判斷BMI值屬於哪個區間 ok
        function status(){
-             var x=count();
-             var word="";
-
+             let x=count();
+             let word="";
 		      if(x>18.5 && x<25){
 			      word="理想";
 				  document.querySelector(".ideal #word").textContent=word;
 				  document.querySelector(".ideal #BMInumber").textContent=x;
 				  document.querySelector(".ideal").style.display ="block";
 				  document.querySelector("#resultball").style.display ="none";
-				//document.querySelector(".recordcolor").style.backgroundColor="#86D73F";
           return word;
 
 			   }else if(x>16 && x<18.5){
@@ -503,35 +501,58 @@
 
        }
 
-     /*
+
      //未完成，測試中測試中測試中測試中測試中測試中測試中測試中測試中測試中測試中測試中
-		 //loop function，按loop圖形，input清除前一次資料，右邊回到看結果，testing
+		 //loop function，按loop圖形，input清除前一次資料，右邊回到看結果
 		 //目前只選取到第一筆資料class="ideal"，在 理想 測試完成，(未完成)再接續第一段addEventListener的取值運算
-      function loop(){
-         var loopRestart=document.querySelector("#loop,.underweight #loop,.overweight #loop,.obesity1 #loop,.obesity2 #loop,.obesity3 #loop,.skinny #loop");
-		     loopRestart.addEventListener("click",function(){
-		     document.querySelector("#highNumber").value="";
-         document.querySelector("#weightNumber").value="";
-			   document.querySelector(".colorball").style.display ="none";
-         document.querySelector("#resultball").style.display ="block";
+  //    function loop(){
+         var loopRestart=document.querySelector(".ideal #loop");
+		      loopRestart.addEventListener("click",function(){
+		       document.querySelector("#highNumber").value="";
+           document.querySelector("#weightNumber").value="";
+			     document.querySelector(".colorball").style.display ="none";
+           document.querySelector("#resultball").style.display ="block";
+          if(document.querySelector("#resultball").style.display=='block'){return};
 
          },false)
          count();
-      }
-      */
+  //    }
+
 
        function add(){
 
-          var d=new Date();
-          var txt=status()+count()+hVal.value+wVal.value+d.toDateString();
-          var todo={
+          let d=new Date();
+          let txt=status()+count()+hVal.value+wVal.value+d.toDateString();
+          const todo={
                content:txt
           };
           data.push(todo);
           updatelist(data);
           localStorage.setItem("listdata",JSON.stringify(data));
 
-          //先用var測試完成，再改成let
+          //colorbar判斷
+          if (status()=="理想"){
+              document.querySelector(".recordcolor").style.backgroundColor="#86D73F";
+              document.querySelector(".recordbar").style.borderBottom="#86D73F 1px groove";
+          }else if(status()=="過輕"){
+              document.querySelector(".recordcolor").style.backgroundColor="#31BAF9";
+              document.querySelector(".recordbar").style.borderBottom="#31BAF9 1px groove";
+          }else if(status()=="過重"){
+              document.querySelector(".recordcolor").style.backgroundColor="#FF982D";
+              document.querySelector(".recordbar").style.borderBottom="#FF982D 1px groove";
+          }else if(status()=="輕度肥胖"){
+              document.querySelector(".recordcolor").style.backgroundColor="#FF6C03";
+              document.querySelector(".recordbar").style.borderBottom="#FF6C03 1px groove";
+          }else if(status()=="中度肥胖"){
+              document.querySelector(".recordcolor").style.backgroundColor="#FF6C03";
+              document.querySelector(".recordbar").style.borderBottom="#FF6C03 1px groove";
+          }else if(status()=="重度肥胖"){
+              document.querySelector(".recordcolor").style.backgroundColor="#FF1200";
+              document.querySelector(".recordbar").style.borderBottom="#FF1200 1px groove";
+          }else if(status()=="瘦弱"){
+              document.querySelector(".recordcolor").style.backgroundColor="#a2ddf9";
+              document.querySelector(".recordbar").style.borderBottom="#a2ddf9 1px groove";
+          }else{}
        }
 
        function updatelist(item){
@@ -544,11 +565,9 @@
                       hVal.value+"cm"+"&nbsp"+"&nbsp"+"&nbsp"+"<font size='3'>"+d.toDateString()+"</font>"+"&nbsp"+
                       "<a class='del' data-index="+i+">delete</a></p></div>";
 
-
-              //再新增 把整個recordbar寫進來
           }
-//暫時關掉 之後打開
-                      recordbar.innerHTML=newstr;
+
+            recordbar.innerHTML=newstr;
               localStorage.setItem("listdata",JSON.stringify(data));
        }
 
@@ -559,7 +578,9 @@
               data.splice(index,1)
               updatalist(data);
               localStorage.setItem("listdata",JSON.stringify(data));
+
        }
+
 
 	 </script>
 </body>
